@@ -5,3 +5,7 @@
 ## 博客分类
 
 - [Canvas](https://github.com/tomatoKnightJ/Blog/labels/canvas)
+
+- [浏览器](https://github.com/tomatoKnightJ/Blog/labels/%E6%B5%8F%E8%A7%88%E5%99%A8)
+
+- [es6](https://github.com/tomatoKnightJ/Blog/labels/es6)
