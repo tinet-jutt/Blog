@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .wave{
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        border: 1px solid lightblue;
+        border-radius: 50%;
+      }
+    </style>
+</head>
+<body>
+<div class="wave"></div>
+<script>
+  class Wave{
+    constructor(el,option){
+      // 波形移动的速度，可根据正负决定波形移动方向
+      this.speed = 1;
+      // 波的默认颜色
+      this.color = 'lightblue';
+      this.el = el;
+      // 振幅，控制水波纹垂直方向的深度
+      this.amplitude = 20;
+      this._offset = 0;
+      Object.assign(this, option);
+      this.init();
+      this.el.appendChild(this.canvas);
+    }
+    init(){
+      const offset = this.el.getBoundingClientRect();
+      // 创建画布
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const { width, height } = offset;
+      const { speed } = this;
+      // 根据容器的尺寸设置画布的尺寸
+      this.width = ctx.width = canvas.width = width;
+      this.height = ctx.height = canvas.height = height;
+      this.canvas = canvas;
+      this.ctx = ctx;
+      this.offsetTop = !!this.offsetTop?this.offsetTop:height/2;
+      this.animate();
+    }
+    render(){
+      const { ctx, width, height, color, _offset, amplitude } = this;
+      let offsetTop = this.offsetTop;
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 1;
+      // 绘制前清空画板
+      this.ctx.clearRect(0,0,this.width,this.height);
+      ctx.beginPath();
+      // 波形涨满后无需进行波形绘制，直接绘制矩形填充
+      if (offsetTop <= 0) {
+        this.offsetTop = 0;
+        ctx.rect(0, 0, this.width, this.height);
+        ctx.fill();
+        return
+      }
+      // 绘制正弦曲线
+      for(let i=0;i<width;i+=0.1){
+        const x = i*30;
+        const y = Math.sin(i+_offset)*amplitude + offsetTop;
+        ctx.lineTo(x,y);
+      }
+      ctx.lineTo(width, height);
+      ctx.lineTo(0, height);
+      ctx.closePath();
+      // 描边
+      ctx.stroke();
+      // 填充
+      ctx.fill();
+    }
+    animate(){
+      this._offset+=this.speed;
+      if(this._offset > this.width) this._offset = 0;
+      this.render();
+      // 动画帧调用
+      window.requestAnimationFrame(this.animate.bind(this));
+    }
+  }
+
+  const el = document.querySelector('.wave');
+
+  const wave = new Wave(el,{
+    speed: -0.07,
+    amplitude: 10,
+    color: 'lightblue'
+  });
+  setInterval(()=>{
+    wave.offsetTop-=0.5;  
+  },30)
+</script>
+</body>
+</html>
