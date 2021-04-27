@@ -5,6 +5,7 @@
 
 ![](../images/3225d83ebf58d328096f1d10e24689d9df647877defb92306dd7a60538e15569.png)
 
+
 ### canvas坐标系
 canvas坐标系和我们在数学中学到的坐标系不同，y轴向下为正方向
 ![picture 1](../images/55403052ba6ab76211bcb76466d5daebb1223e6986c7cf53c5d60cf724b71413.png)  

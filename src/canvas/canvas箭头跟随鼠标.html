@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>arrow</title>
+	<style type="text/css">
+		#mycanvas{
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<canvas id='mycanvas' width="300" height="300"></canvas>
+<script type="text/javascript" src="./utiles/tools.js"></script>
+<script type="text/javascript" src="./components/Arrow.js"></script>
+<script type="text/javascript">
+window.onload=function(){
+	var ocanvas=document.getElementById('mycanvas'),
+		ctx=ocanvas.getContext('2d'),
+		W=ocanvas.width,
+		H=ocanvas.height;
+
+	let arrow=new Arrow({
+		x:W/2,
+		y:H/2,
+		rotation:Math.PI/180*30
+	}).render(ctx)
+
+	let mouse =C.getxy(ocanvas);
+
+	(function move(){
+		window.requestAnimationFrame(move);
+		ctx.clearRect(0,0,W,H);
+		let dx = mouse.x-arrow.x,
+		    dy = mouse.y-arrow.y,
+		    speed = (Math.sqrt(dx*dx+dy*dy))*0.1,
+			angle = Math.atan2(dy,dx),
+			vx = speed*Math.cos(angle),
+			vy = speed*Math.sin(angle);
+			console.log('dx', dx, 'dy', dy);
+			
+		if(Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+			arrow.rotation = angle;
+			arrow.x += vx;
+			arrow.y += vy;
+		}
+		
+		arrow.render(ctx);	
+	})()
+}
+</script>
+</body>
+</html>
