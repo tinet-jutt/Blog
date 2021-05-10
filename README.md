@@ -12,3 +12,8 @@
 
 - [es6](https://github.com/tomatoKnightJ/Blog/labels/es6)
 
+- [Git](https://github.com/tinet-jutt/Blog/issues?q=is%3Aissue+is%3Aopen+label%3AGit)
+
+- [NPM](https://github.com/tinet-jutt/Blog/labels/NPM)
+
+- [TypeScript](https://github.com/tinet-jutt/Blog/issues?q=is%3Aissue+is%3Aopen+label%3ATypeScript)
