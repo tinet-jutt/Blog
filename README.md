@@ -15,3 +15,5 @@
 - [NPM](https://github.com/tinet-jutt/Blog/labels/NPM)
 
 - [TypeScript](https://github.com/tinet-jutt/Blog/issues?q=is%3Aissue+is%3Aopen+label%3ATypeScript)
+
+- [Python](https://github.com/tinet-jutt/Blog/labels/Python)
