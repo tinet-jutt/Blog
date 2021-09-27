@@ -1,4 +1,4 @@
-# Python实时获输出
+# Python实时获取输出
 
 #### python print 介绍
 
