@@ -19,6 +19,14 @@ if (condition) {
 ```js
 condition && dosomething()
 ```
+
+#### 取整 
+可以使用 Math.floor()、Math.ceil()或 Math.round()将浮点数转换成整数，但有另一种更快的方式
+```js
+console.log(1.6 | 0); 
+```
+
+
 #### 获取文件拓展名
 ```js
 var file1 = "50.xsl";
@@ -41,19 +49,18 @@ function getFileExtension(filename) {
 function getFileExtension3(filename) {
   return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
 }
-
 console.log(getFileExtension3(''));                            // ''
 console.log(getFileExtension3('filename'));                    // ''
 console.log(getFileExtension3('filename.txt'));                // 'txt'
 console.log(getFileExtension3('.hiddenfile'));                 // ''
 console.log(getFileExtension3('filename.with.many.dots.ext')); // 'ext'
 ```
+
 如何实现的？
 
-无符号右移操作符(»>) 将-1转换为4294967295，这个方法可以保证边缘情况时文件名不变。
+无符号右移操作符(>>>) 将-1转换为4294967295，这个方法可以保证边缘情况时文件名不变。
 
 #### 比较相等
-
 - ==
 js类型隐式转换会出现意想不到的结果。
 ```js
@@ -107,7 +114,6 @@ console.log(x);      // 输出「c」
 "a"
 "b"
 "c"
-
 "c"
 ```
 注意：逗号（,）操作符在 JavaScript 中所有的操作符里是最低的优先顺序，所以没有括号表达式时将变为：(x = a()), b(), c();。
@@ -127,50 +133,14 @@ Uncaught SyntaxError: Unexpected token ,
 fun(...[1,,3])
 ```
 
-#### 创建循环数组
-有时我们需要不停的循环数组的元素；使用 % ( 取模 ) 操作符更优雅。取模返回除法的余数 ( 2 % 5 = 1 and 5 % 5 = 0)：
+#### 字符串拼接
 ```js
-var aList = ['A','B','C','D','E'];
-
-
-function make_looper( arr ){
-
-    arr.loop_idx = 0;
-
-    // return current item
-    arr.current = function(){
-      this.loop_idx = ( this.loop_idx ) % this.length;// 无需检查 !!
-      return arr[ this.loop_idx ];
-    };
-
-    // 增加 loop_idx 然后返回新的当前元素
-    arr.next = function(){
-      this.loop_idx++;
-      return this.current();
-    };
-    
-    // 减少 loop_idx 然后返回新的当前元素
-    arr.prev = function(){
-      this.loop_idx += this.length - 1;
-      return this.current();
-    };
-}
-
-make_looper( aList);
-
-aList.current();// -> A
-aList.next();// -> B
-aList.next();// -> C
-aList.next();// -> D
-aList.next();// -> E
-aList.next();// -> A
-aList.pop() ;// -> E
-aList.prev();// -> D
-aList.prev();// -> C
-aList.prev();// -> B
-aList.prev();// -> A
-aList.prev();// -> D
+var a = 1;
+var b = 2;
+var c = '3';
+var result = ''.concat(a, b, c); //"123"
 ```
+
 #### New操作符号
 ```js
 function Thing() {
