@@ -8,7 +8,7 @@
 
 - [浏览器](https://github.com/tomatoKnightJ/Blog/labels/%E6%B5%8F%E8%A7%88%E5%99%A8)
 
-- [es6](https://github.com/tomatoKnightJ/Blog/labels/es6)
+- [ES6](https://github.com/tomatoKnightJ/Blog/labels/es6)
 
 - [Git](https://github.com/tinet-jutt/Blog/issues?q=is%3Aissue+is%3Aopen+label%3AGit)
 
